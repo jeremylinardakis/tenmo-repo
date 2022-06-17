@@ -8,5 +8,6 @@ export default {
 
     getUsers() {
         return axios.get('tenmo/users')
-    }
+    },
+
 }
