@@ -12,17 +12,24 @@ export default {
   name: "home",
   data() {
     return {
-      balance : ''
+      balance : '',
+      users : []
     }
   },
   created() {
     this.getBalance();
+    this.getUsers();
   },
   methods : {
     getBalance() {
       accountService.getBalance().then(response => {
         this.balance = response.data;
         this.$store.commit("SET_USER_BALANCE", this.balance)
+      })
+    },
+    getUsers() {
+      accountService.getUsers().then(response => {
+        console.log(response.data)
       })
     }
   }

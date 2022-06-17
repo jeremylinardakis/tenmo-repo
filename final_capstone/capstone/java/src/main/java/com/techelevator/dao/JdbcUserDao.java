@@ -43,11 +43,11 @@ public class JdbcUserDao implements UserDao {
 	}
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll(String username) {
         List<User> users = new ArrayList<>();
-        String sql = "select * from tenmo_user";
+        String sql = "select * from tenmo_user where username != ?";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while(results.next()) {
             User user = mapRowToUser(results);
             users.add(user);
@@ -58,7 +58,7 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        for (User user : this.findAll()) {
+        for (User user : this.findAll(username)) {
             if( user.getUsername().toLowerCase().equals(username.toLowerCase())) {
                 return user;
             }

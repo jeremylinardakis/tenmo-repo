@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    balance: ''
+    balance: '',
+    users: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,13 +38,15 @@ export default new Vuex.Store({
       localStorage.removeItem('user');
       state.token = '';
       state.user = {};
+      state.balance = '';
+      state.users = [];
       axios.defaults.headers.common = {};
     },
     SET_USER_BALANCE(state, balance) {
       state.balance = balance;
     },
-    CLEAR_USER_BALANCE(state) {
-      state.balance = ''
-    }
+    SET_AVAILABLE_USERS(state, users) {
+      state.users = users;
+    },
   }
 })

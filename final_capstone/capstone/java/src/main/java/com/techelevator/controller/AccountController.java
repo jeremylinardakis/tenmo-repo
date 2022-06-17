@@ -28,7 +28,6 @@ public class AccountController {
         this.userDao = userDao;
     }
 
-
     @RequestMapping (path = "balance", method = RequestMethod.GET)
     public BigDecimal getBalance (Principal principal) {
         int userId = userDao.findIdByUsername(principal.getName());
@@ -36,10 +35,10 @@ public class AccountController {
     }
 
 
-    /*@RequestMapping(path = "users/list", method = RequestMethod.GET)
+    @RequestMapping(path = "users", method = RequestMethod.GET)
     public List<User> getAllUsers (Principal principal) {
         return userDao.findAll(principal.getName());
-    }*/
+    }
 
 }
 
