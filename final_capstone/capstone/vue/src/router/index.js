@@ -55,8 +55,9 @@ const router = new Router({
       }
     },
     {
-      path: "/send",
-      name: "send",
+      path: "/create",
+      name: "create",
+      params: ,
       component: CreateTransferPage,
       meta: {
         requiresAuth: true

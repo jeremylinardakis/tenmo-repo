@@ -28,13 +28,7 @@ export default {
     this.findUser();
   },
   methods : {
-    findUser() {
-      return this.$store.state.users.find(user => {
-        if(user.username === this.$route.params.username) {
-          this.user = user
-        }
-      })
-    }
+
   }
 }
 </script>

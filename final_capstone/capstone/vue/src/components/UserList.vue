@@ -1,9 +1,7 @@
 <template>
   <div class="list-container">
-    <div id="user-bubble" v-for="user in this.$store.state.users" v-bind:key="user.id">
+    <div v-on:click="$router.push('/create')" id="user-bubble" v-for="user in this.$store.state.users" v-bind:key="user.id">
       <p>{{user.username}}</p>
-      <b-button>Request money</b-button>
-      <b-button>Send money</b-button>
     </div>
   </div>
 </template>
