@@ -55,12 +55,11 @@ const router = new Router({
       }
     },
     {
-      path: "/create",
+      path: "/create/:username",
       name: "create",
-      params: ,
       component: CreateTransferPage,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     }
   ]

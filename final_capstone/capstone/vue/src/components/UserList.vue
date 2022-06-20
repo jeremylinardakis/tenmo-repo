@@ -1,6 +1,6 @@
 <template>
   <div class="list-container">
-    <div v-on:click="$router.push('/create')" id="user-bubble" v-for="user in this.$store.state.users" v-bind:key="user.id">
+    <div v-on:click="nextPage(user.username)" id="user-bubble" v-for="user in this.$store.state.users" v-bind:key="user.id">
       <p>{{user.username}}</p>
     </div>
   </div>
@@ -17,6 +17,11 @@ export default {
   },
   created() {
     this.users = this.$store.state.users
+  },
+  methods : {
+    nextPage(username) {
+      this.$router.push({name :'create', params: {username: username}})
+    }
   }
 }
 </script>
