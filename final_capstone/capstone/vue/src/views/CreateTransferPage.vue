@@ -49,8 +49,6 @@ export default {
         this.transfer.transferStatus = 2;
         transferService.sendTransfer(this.transfer).then(response => {
           if (response.data === true) {
-            this.balance -= this.transferAmount
-            this.$store.commit("SET_USER_BALANCE", this.balance)
             alert("Funds were sent successfully!")
             this.$router.push({path : '/'})
           }
@@ -58,7 +56,10 @@ export default {
       } else {
         this.transfer.transferStatus = 1
         transferService.requestTransfer(this.transfer).then(response => {
-          console.log(response.data)
+          if (response.data === true) {
+            alert("Request was sent successfully!")
+            this.$router.push({path : '/'})
+          }
         })
       }
     },

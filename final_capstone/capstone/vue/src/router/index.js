@@ -6,6 +6,8 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import CreateTransferPage from "@/views/CreateTransferPage";
+import TransferList from "@/components/TransferList";
+import PendingTransferPage from "@/views/PendingTransferPage";
 
 Vue.use(Router)
 
@@ -61,7 +63,24 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/transfers",
+      name: "transfers",
+      component: TransferList,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/pendingtransfers',
+      name: 'pending-transfers',
+      component: PendingTransferPage,
+      meta: {
+        requiresAuth: false
+      }
     }
+
   ]
 })
 

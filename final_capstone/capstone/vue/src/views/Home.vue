@@ -8,7 +8,7 @@
 
 <script>
 import accountService from "@/services/AccountService";
-// import transferService from "@/services/TransferService";
+import transferService from "@/services/TransferService";
 import UserList from "@/components/UserList";
 
 export default {
@@ -23,7 +23,7 @@ export default {
   created() {
     this.getBalance();
     this.getUsers();
-    // this.getTransfers();
+    this.getTransfers();
   },
   methods : {
     getBalance() {
@@ -38,11 +38,11 @@ export default {
         this.$store.commit("SET_AVAILABLE_USERS", this.users)
       })
     },
-    // getTransfers() {
-    //   transferService.getTransfers().then(response => {
-    //     console.log(response.data)
-    //   })
-    // }
+    getTransfers() {
+      transferService.getTransfers().then(response => {
+        this.$store.commit("SET_ALL_TRANSFERS", response.data)
+      })
+    }
   }
 };
 </script>

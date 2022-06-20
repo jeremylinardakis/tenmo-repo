@@ -21,7 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     balance: '',
-    users: []
+    users: [],
+    transfers : []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -48,5 +49,8 @@ export default new Vuex.Store({
     SET_AVAILABLE_USERS(state, users) {
       state.users = users;
     },
+    SET_ALL_TRANSFERS(state, transfers) {
+      state.transfers = transfers
+    }
   }
 })
