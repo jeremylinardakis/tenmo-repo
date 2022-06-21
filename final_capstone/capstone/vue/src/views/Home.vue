@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <h2>Hi {{this.$store.state.user.username}}!</h2>
+    <p>Please select a user to send or request funds from</p>
     <user-list></user-list>
   </div>
 </template>

@@ -30,21 +30,24 @@ export default {
   created() {
     console.log(this.$store.state.user.username)
       this.pendingTransfers = this.$store.state.transfers.filter(transfer => {
-        return (transfer.transferType === 2 && this.$store.state.user.username === transfer.toUsername)
+        return (transfer.transferStatus === 1 && this.$store.state.user.username !== transfer.fromUsername)
       })
-
-
-
   },
   methods: {
     approveTransfer(transfer) {
       transferService.approveTransfer(transfer).then(response => {
-        console.log(response)
+        if (response.status === 200) {
+          alert("Transfer successfully approved!")
+          this.$router.push({ path : '/'})
+        }
       })
     },
     declineTransfer(transfer) {
       transferService.declineTransfer(transfer).then(response => {
-        console.log(response)
+        if (response.status === 200) {
+          alert("Transfer successfully decline!")
+          this.$router.push({ path : '/'})
+        }
       })
     }
   }

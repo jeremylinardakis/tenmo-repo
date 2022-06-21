@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     sendTransfer() {
-      this.transfer.toUsername = this.user.username;
       this.transfer.userIdOfDestinationAccount = this.user.id;
       if (this.transfer.transferType === 1) {
         this.transfer.transferStatus = 2;
