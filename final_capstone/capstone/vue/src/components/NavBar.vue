@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar type="dark" variant="dark">
+    <b-navbar type="light" variant="light" fixed="top" id="nav">
       <b-navbar-nav>
         <b-nav-item v-bind:to="{ name: 'home' }">Home</b-nav-item>
         <b-nav-item v-bind:to="{ name: 'pending-transfers'}">Pending Transfers</b-nav-item>

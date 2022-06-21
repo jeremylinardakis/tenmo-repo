@@ -3,7 +3,7 @@
     <div id="nav">
       <nav-bar></nav-bar>
     </div>
-    <router-view />
+    <router-view id="router-view"/>
   </div>
 </template>
 <script>
@@ -12,3 +12,9 @@ export default {
   components: {NavBar}
 }
 </script>
+
+<style scoped>
+#router-view {
+  margin-top: 70px;
+}
+</style>

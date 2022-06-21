@@ -1,17 +1,10 @@
 <template>
   <div class="transfer-list-container">
-    <h5>{{transfers}}</h5>
-    <b-card
-        v-for="transfer in transfers"
-        v-bind:key="transfer.id"
-        border-variant="secondary"
-        :header="transfer.fromUsername"
-        header-border-variant="secondary"
-        align="center"
-    >
-      <b-card-text>Amount: ${{transfer.transferAmount}}</b-card-text>
-    </b-card>
-
+    <div id="transfer-item" v-for="transfer in transfers" :key="transfer.id">
+      <ul>
+        <li>{{getOtherUsername(transfer)}} {{transfer.transferAmount}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -20,11 +13,33 @@ export default {
   name: "TransferList",
   data() {
     return {
-      transfers : []
+      transfers : [],
+      fields: [
+        { key: this.transfer.toUsername, label: "To username"}
+      ]
     }
   },
   created() {
     this.transfers = this.$store.state.transfers
+  },
+  methods: {
+    getOtherUsername(transfer) {
+      let phrase = '';
+
+      if(this.$store.state.user.username === transfer.toUsername) {
+        phrase = transfer.fromUsername;
+      } else {
+        phrase = transfer.toUsername;
+      }
+
+      if(this.transfer.transferType === 1) {
+        phrase += " sent you "
+      } else {
+        phrase += ""
+      }
+      return phrase
+    },
+
   }
 }
 </script>

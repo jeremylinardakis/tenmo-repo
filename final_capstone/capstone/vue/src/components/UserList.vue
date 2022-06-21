@@ -1,5 +1,6 @@
 <template>
   <div class="list-container">
+    <p>Please select a user to send or request funds from</p>
     <div v-on:click="nextPage(user.username)" id="user-bubble" v-for="user in this.$store.state.users" v-bind:key="user.id">
       <p>{{user.username}}</p>
     </div>
@@ -31,13 +32,14 @@ export default {
 .list-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 #user-bubble {
   border: solid black 1px;
   border-radius: 5px;
   margin: 5px;
-  width: 15%;
+  width: 30%;
   box-shadow: 2px 2px;
 }
 

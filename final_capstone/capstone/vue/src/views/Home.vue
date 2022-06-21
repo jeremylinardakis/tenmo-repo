@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <h2>Hello, {{this.$store.state.user.username}}!</h2>
-    <p>Please select a user to send or request funds from</p>
+    <h2>Hey there {{this.$store.state.user.username}}!</h2>
     <user-list></user-list>
   </div>
 </template>
@@ -47,3 +45,16 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-weight: bold;
+}
+</style>
