@@ -39,7 +39,7 @@ public class JdbcTranferDao implements TransferDao {
         JdbcAccountDao jdbcAccountDao = new JdbcAccountDao(jdbcTemplate.getDataSource());
         // Query updates transfer to approved
         String updateSentSql = "UPDATE transfer SET transfer_status_id = 2 WHERE transfer_id = ?";
-        if (transfer.getTransferType() == 1 && jdbcAccountDao.sendFunds(transfer.getTransferAmount(), currentUserId)) {
+        if (jdbcAccountDao.sendFunds(transfer.getTransferAmount(), currentUserId)) {
             jdbcAccountDao.recieveFunds(transfer.getTransferAmount(), transfer.getUserIdOfDestinationAccount());
             jdbcTemplate.update(updateSentSql, returnedTransferId);
             return true;
