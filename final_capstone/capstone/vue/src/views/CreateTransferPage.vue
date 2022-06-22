@@ -1,24 +1,31 @@
 <template>
   <div class="transfer-form-container">
-    <b-button v-on:click="toggleSendTransfer()" v-if="transfer.transferType === ''">Send</b-button>
-    <b-button v-on:click="toggleRequestTransfer()" v-if="transfer.transferType === ''">Request</b-button>
-    <h3>Available balance: ${{balance}}</h3>
-    <h3>{{displayTransferType()}}</h3>
-    <h3>{{user}}</h3>
-    <h3>{{transfer}}</h3>
-    <b-form-group v-if="transfer.transferType !== ''">
-    <b-form-input :disabled="transfer.transferType === ''" :maxlength="balance" type="number" placeholder="amount" v-model="transfer.transferAmount"></b-form-input>
+
+    <h2>${{balance}}</h2>
+    <h6>[ your available funds ]</h6>
+    <h4 v-if="transfer.transferType === ''">what type of request will this be?</h4>
+    <div class="button-container">
+      <b-button id="btn" v-on:click="toggleSendTransfer()" v-if="transfer.transferType === ''">send them money</b-button>
+      <b-button id="btn" v-on:click="toggleRequestTransfer()" v-if="transfer.transferType === ''">request some money</b-button>
+    </div>
+<!--    <h3>{{displayTransferType()}}</h3>-->
+
+    <b-form-group v-if="transfer.transferType !== ''" id="form-container">
+    <b-form-input :disabled="transfer.transferType === ''" :maxlength="balance" type="number" placeholder="how much will you send?" v-model="transfer.transferAmount"></b-form-input>
     <b-form-textarea
         :disabled="transfer.transferType === ''"
         id="textarea"
         v-model="transfer.transferMessage"
-        placeholder="Enter a transfer message!"
+        placeholder="enter a transfer message!"
         rows="3"
         max-rows="6"
     ></b-form-textarea>
-    <b-button v-on:click="sendTransfer()">Send</b-button>
-    <b-button v-on:click="cancelRequest()">Cancel</b-button>
+
     </b-form-group>
+    <div >
+      <b-button id="btn" v-if="transfer.transferType !== ''" v-on:click="sendTransfer()">Send</b-button>
+      <b-button id="btn" v-if="transfer.transferType !== ''" v-on:click="cancelRequest()">Cancel</b-button>
+    </div>
   </div>
 </template>
 
@@ -93,5 +100,28 @@ export default {
 </script>
 
 <style scoped>
+.transfer-form-container {
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+h2 {
+  margin-top: 40px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+h4 {
+  margin: 10px 0px 20px 0px;
+}
+
+#btn {
+  margin : 0 5px 0 5px
+}
+
+#form-container {
+  margin: 20px;
+  min-width: 25%;
+}
 </style>

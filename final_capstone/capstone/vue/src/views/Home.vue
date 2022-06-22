@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <h2>Hey there {{this.$store.state.user.username}}!</h2>
-    <user-list></user-list>
+    <h2>Hey there {{this.$store.state.user.username}},</h2>
+    <h5>welcome to our money transfer app!</h5>
+    <b-button v-if="showUsers === false" v-on:click="toggleShowUsers()">let's get started!</b-button>
+    <user-list v-if="showUsers === true"></user-list>
   </div>
 </template>
 
@@ -16,7 +18,8 @@ export default {
   data() {
     return {
       balance : '',
-      users : []
+      users : [],
+      showUsers : false
     }
   },
   created() {
@@ -41,6 +44,9 @@ export default {
       transferService.getTransfers().then(response => {
         this.$store.commit("SET_ALL_TRANSFERS", response.data)
       })
+    },
+    toggleShowUsers() {
+      this.showUsers = true;
     }
   }
 };
@@ -56,5 +62,6 @@ export default {
 
 h2 {
   font-weight: bold;
+  margin-top: 10%;
 }
 </style>

@@ -8,6 +8,7 @@ import store from '../store/index'
 import CreateTransferPage from "@/views/CreateTransferPage";
 import TransferList from "@/components/TransferList";
 import PendingTransferPage from "@/views/PendingTransferPage";
+import TransferInfo from "@/views/TransferInfo";
 
 Vue.use(Router)
 
@@ -79,6 +80,15 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: '/transfer/:transferId',
+      name: 'transfer-details',
+      component: TransferInfo,
+      meta: {
+        requiresAuth: false
+      }
+
     }
 
   ]
