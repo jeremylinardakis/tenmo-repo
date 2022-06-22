@@ -11,7 +11,7 @@
 <!--    <h3>{{displayTransferType()}}</h3>-->
 
     <b-form-group v-if="transfer.transferType !== ''" id="form-container">
-    <b-form-input :disabled="transfer.transferType === ''" :maxlength="balance" type="number" placeholder="how much will you send?" v-model="transfer.transferAmount"></b-form-input>
+    <b-form-input :disabled="transfer.transferType === ''" :maxlength="balance" type="number" :placeholder="getTransferTypeMessage()" v-model="transfer.transferAmount"></b-form-input>
     <b-form-textarea
         :disabled="transfer.transferType === ''"
         id="textarea"
@@ -75,11 +75,11 @@ export default {
     toggleRequestTransfer() {
       this.transfer.transferType = 2
     },
-    displayTransferType() {
+    getTransferTypeMessage() {
       if (this.transfer.transferType === 1) {
-        return "Amount to be sent:"
+        return "how much will you send?"
       } else {
-        return "Request amount:"
+        return "how much should they send?"
       }
     },
     cancelRequest() {

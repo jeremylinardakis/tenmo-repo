@@ -1,7 +1,9 @@
 <template>
   <div class="list-container">
     <p id="instructions">please select a user from the list below to send or request funds</p>
-    <div v-on:click="nextPage(user.username)" id="user-bubble" v-for="user in this.$store.state.users" v-bind:key="user.id">
+    <p id="filter-box-toggle" v-if="showFilterBox === false" v-on:click="toggleShowFilterBox()">[ click me for a search bar ]</p>
+    <input v-if="showFilterBox === true" class="filter" type="text" placeholder="type username here" v-model="searchName"/>
+    <div  v-on:click="nextPage(user.username)" id="user-bubble" v-for="user in filteredList" v-bind:key="user.id">
       <p>{{user.username}}</p>
     </div>
   </div>
@@ -13,7 +15,9 @@ export default {
   data() {
     return {
       users : [],
-      fields: ['username']
+      fields: ['username'],
+      searchName: "",
+      showFilterBox: false,
     }
   },
   created() {
@@ -22,6 +26,16 @@ export default {
   methods : {
     nextPage(username) {
       this.$router.push({name :'create', params: {username: username}})
+    },
+    toggleShowFilterBox() {
+      this.showFilterBox = this.showFilterBox === false;
+    }
+  },
+  computed: {
+    filteredList() {
+      return this.$store.state.users.filter(user => {
+          return user.username.toLowerCase().includes(this.searchName.toLowerCase())
+        })
     }
   }
 }
@@ -29,7 +43,12 @@ export default {
 
 <style scoped>
 #instructions {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+#filter-box-toggle:hover {
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .list-container {
@@ -56,6 +75,11 @@ export default {
 p {
   margin: 5px;
   text-align: center;
+}
+
+.filter {
+  text-align: center;
+  margin: 10px 0 15px 0;
 }
 
 </style>

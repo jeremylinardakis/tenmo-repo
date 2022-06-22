@@ -46,6 +46,7 @@ export default {
 <style scoped>
 #individual-transfer:hover {
   cursor: pointer;
+  font-weight: bold;
 }
 
 #individual-transfer {

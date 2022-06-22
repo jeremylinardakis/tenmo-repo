@@ -2,7 +2,7 @@
   <div class="home">
     <h2>Hey there {{this.$store.state.user.username}},</h2>
     <h5>welcome to our money transfer app!</h5>
-    <b-button v-if="showUsers === false" v-on:click="toggleShowUsers()">let's get started!</b-button>
+    <b-button id="btn" v-if="showUsers === false" v-on:click="toggleShowUsers()">let's get started!</b-button>
     <user-list v-if="showUsers === true"></user-list>
   </div>
 </template>
@@ -63,5 +63,9 @@ export default {
 h2 {
   font-weight: bold;
   margin-top: 10%;
+}
+
+#btn {
+  margin-top: 20px;
 }
 </style>
