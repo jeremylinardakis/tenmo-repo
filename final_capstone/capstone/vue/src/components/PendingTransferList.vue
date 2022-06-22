@@ -1,7 +1,7 @@
 <template>
   <div class="pending-transfer-list-container">
     <h2>my pending transfers</h2>
-    <h5 id="empty-array" v-if="pendingTransfers.length === 0">no transfers to display(yet)</h5>
+    <h5 id="empty-array" v-if="pendingTransfers.length === 0">[ no transfers to display(yet) ]</h5>
     <b-card
         id="transfer-card"
         v-for="transfer in pendingTransfers"
@@ -85,7 +85,7 @@ export default {
 }
 
 h2 {
-  margin: 20px;
+  margin: 40px 0 20px 0;
   font-weight: bold;
 }
 </style>
